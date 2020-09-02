@@ -36,3 +36,80 @@
     transform: rotate(360deg);
   }
 }
+
+.Folder {
+  flex: 1;
+  padding: 0px;
+  border: black 1px solid;
+}
+
+.FolderList {
+  padding: 0;
+}
+
+header {
+  background-color: black;
+}
+
+h1 {
+  color: white;
+  margin: 0;
+  text-align: center;
+}
+
+.Main {
+  flex: 1;
+}
+
+.sidebar-main-container {
+  display: flex;
+}
+
+.Note {
+  flex: 1;
+  border: 1px black solid;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.Note a {
+  color: black;
+}
+
+h2 {
+  margin: 0;
+}
+
+.NoteList {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.Sidebar {
+  border: solid 1px black;
+  min-width: 150px;
+}
+
+.active {
+  background-color: black;
+  color: white;
+}
+
+.active:visited {
+  color: white;
+}
+
+.Folder a {
+  display: block;
+  padding: 10px;
+}
+
+a:visited {
+  color: black;
+}
+
+a:hover {
+  color: black;
+}
+

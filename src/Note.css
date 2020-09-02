@@ -1,0 +1,10 @@
+.Note {
+  flex: 1;
+  border: 1px black solid;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  margin: 0;
+}

@@ -1,26 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+import MainPage from './MainPage';
+import NotePage from './NotePage';
+import FolderPage from './FolderPage';
+import STORE from './dummy-store';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+export default class App extends Component {
+  state = {
+    STORE,
+    selectedFolder: null
+  };
 
-export default App;
+
+  render() {
+    const { folders, notes } = this.state.STORE;
+    return (
+      <>
+        <Route
+          exact
+          path='/note/:noteId'
+          render={props => (
+            <NotePage 
+              folders={folders}
+              notes={notes}
+              {...props}
+              onGoBack={() => props.history.push('/')}
+              />)}
+        />
+        <Route
+          path='/folder/:folderId'
+          render={props =>
+            <FolderPage 
+            folders={folders}
+            notes={notes}
+            {...props}/>}
+        />
+        <Route
+          exact path='/'
+          render={() =>
+            <MainPage
+              folders={folders}
+              notes={notes} />}
+        />
+      </>
+
+    )
+  }
+}
