@@ -1,21 +1,26 @@
 import React from 'react';
 import Note from './Note';
 import NoteContent from './NoteContent';
+import NotefulContext from './NotefulContext';
 import './NoteMain.css';
 
-export default function Header(props) {
-  const { name, modified, id, content } = props.notes.find(({ id }) => id === props.noteId)
-  return (
-    <section className='Main'>
-      <ul className='NoteList'>
-        <Note
-          name={name}
-          modified={modified}
-          id={id} />
-        <NoteContent content={content} />
-      </ul>
+export default class NoteMain extends React.Component {
+  static contextType = NotefulContext;
 
+  render() {
+    const { name, modified, id, content } = this.context.notes.find(({ id }) => id === this.props.noteId);
+    return (
+      <section className='Main'>
+        <ul className='NoteList'>
+          <Note
+            name={name}
+            modified={modified}
+            id={id}
+            onDeleteNote={this.props.onDeleteNote} />
+          <NoteContent content={content} />
+        </ul>
+      </section>
+    );
+  }
 
-    </section>
-  )
 }

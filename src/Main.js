@@ -5,7 +5,7 @@ import './Main.css';
 export default function Header(props) {
     return (
         <section className='Main'>
-            <NoteList notes={props.notes}/>
+            <NoteList selectedFolderId={props.selectedFolderId}/>
             <button>Add Note</button>
         </section>
     )

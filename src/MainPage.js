@@ -9,8 +9,7 @@ export default function MainPage(props) {
     <>
       <Header />
       <div className='sidebar-main-container'>
-        <Sidebar 
-          folders={props.folders}/>
+        <Sidebar/>
         <Main 
           notes={props.notes}/>
       </div>
