@@ -1,7 +1,7 @@
 import React from 'react';
-import Note from './Note';
-import NoteContent from './NoteContent';
-import NotefulContext from './NotefulContext';
+import Note from '../Note/Note';
+import NoteContent from '../NoteContent/NoteContent';
+import NotefulContext from '../NotefulContext';
 import './NoteMain.css';
 
 export default class NoteMain extends React.Component {

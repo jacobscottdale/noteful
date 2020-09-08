@@ -103,6 +103,7 @@ h2 {
 .Folder a {
   display: block;
   padding: 10px;
+  color: black;
 }
 
 a:visited {

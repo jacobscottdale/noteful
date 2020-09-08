@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import config from './config';
+import config from '../config';
 import './Note.css';
-import NotefulContext from './NotefulContext';
+import NotefulContext from '../NotefulContext';
 
 export default class Note extends Component {
   static defaultProps = {

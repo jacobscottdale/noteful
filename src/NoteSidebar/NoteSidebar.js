@@ -1,6 +1,5 @@
 import React from 'react';
-import './Sidebar.css'
-
+import './NoteSidebar.css'
 
 export default function NoteSidebar(props) {
   

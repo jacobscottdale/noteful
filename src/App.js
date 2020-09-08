@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import MainPage from './MainPage';
-import NotePage from './NotePage';
-import FolderPage from './FolderPage';
+import MainPage from './MainPage/MainPage';
+import NotePage from './NotePage/NotePage';
+import FolderPage from './FolderPage/FolderPage';
 import NotefulContext from './NotefulContext';
+import AddFolder from './AddFolder/AddFolder';
 import config from './config';
 import './App.css';
+import AddNote from './AddNote/AddNote';
 
 export default class App extends Component {
   state = {
@@ -13,12 +15,31 @@ export default class App extends Component {
     notes: []
   };
 
+  addFolder = folder => {
+    this.setState({
+      folders: [...this.state.folders, folder],
+    });
+  };
+
+  addNote = note => {
+    this.setState({
+      notes: [...this.state.notes, note],
+    })
+  }
+
+  deleteNote = noteId => {
+    const newNotes = this.state.notes.filter(note => note.id !== noteId);
+    this.setState({
+      notes: newNotes
+    });
+  };
+
   componentDidMount() {
     Promise.all([
       fetch(`${config.API_ENDPOINT}/notes`),
       fetch(`${config.API_ENDPOINT}/folders`)
     ])
-      .then(([ notesResponse, foldersResponse ]) => {
+      .then(([notesResponse, foldersResponse]) => {
         isResponseOk(notesResponse);
         isResponseOk(foldersResponse);
         return Promise.all([notesResponse.json(), foldersResponse.json()]);
@@ -37,22 +58,39 @@ export default class App extends Component {
     }
   }
 
-  deleteNote = noteId => {
-    const newNotes = this.state.notes.filter(note => note.id !== noteId);
-    this.setState({
-      notes: newNotes
-    })
-  }
-
   render() {
     const contextValue = {
       folders: this.state.folders,
       notes: this.state.notes,
-      deleteNote: this.deleteNote
+      deleteNote: this.deleteNote,
+      addFolder: this.addFolder,
+      addNote: this.addNote,
     };
     return (
       <NotefulContext.Provider
         value={contextValue}>
+        <Route
+          exact
+          path='/add-new-note'
+          render={props => (
+            <AddNote
+              onCancel={() => props.history.push('/')}
+              {...props}
+            />
+          )}
+        />
+
+        <Route
+          exact
+          path='/add-new-folder'
+          render={props => (
+            <AddFolder
+              onCancel={() => props.history.push('/')}
+              {...props}
+            />
+          )}
+        />
+
         <Route
           exact
           path='/note/:noteId'

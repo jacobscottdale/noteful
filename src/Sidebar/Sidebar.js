@@ -1,12 +1,13 @@
 import React from 'react';
-import FolderList from './FolderList';
+import { Link } from 'react-router-dom';
+import FolderList from '../FolderList/FolderList';
 import './Sidebar.css';
 
 export default function Sidebar() {
   return (
     <nav className='Sidebar'>
       <FolderList />
-      <button>Add New Folder</button>
+      <Link to='/add-new-folder'>Add New Folder</Link>
     </nav>
   );
 }
