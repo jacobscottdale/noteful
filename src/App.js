@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import MainPage from './MainPage/MainPage';
 import NotePage from './NotePage/NotePage';
 import FolderPage from './FolderPage/FolderPage';
 import NotefulContext from './NotefulContext';
 import AddFolder from './AddFolder/AddFolder';
+import AddNote from './AddNote/AddNote';
 import config from './config';
 import './App.css';
-import AddNote from './AddNote/AddNote';
 
-export default class App extends Component {
+class App extends Component {
   state = {
     folders: [],
     notes: []
@@ -24,7 +24,9 @@ export default class App extends Component {
   addNote = note => {
     this.setState({
       notes: [...this.state.notes, note],
-    })
+    }, () => {
+      this.props.history.push(`/note/${note.id}`)
+    });
   }
 
   deleteNote = noteId => {
@@ -117,3 +119,5 @@ export default class App extends Component {
     );
   }
 }
+
+export default withRouter(App);

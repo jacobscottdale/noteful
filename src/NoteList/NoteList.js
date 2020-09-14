@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Note from '../Note/Note';
 import NotefulContext from '../NotefulContext';
 import './NoteList.css';
@@ -26,4 +27,8 @@ export default function NoteList(props) {
       }}
     </NotefulContext.Consumer>
   );
+}
+
+NoteList.propTypes = {
+  selectedFolderId: PropTypes.string
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Note from '../Note/Note';
 import NoteContent from '../NoteContent/NoteContent';
 import NotefulContext from '../NotefulContext';
@@ -17,10 +18,16 @@ export default class NoteMain extends React.Component {
             modified={modified}
             id={id}
             onDeleteNote={this.props.onDeleteNote} />
-          <NoteContent content={content} />
+          <li>
+            <NoteContent content={content} />
+          </li>
         </ul>
       </section>
     );
   }
-
 }
+
+NoteMain.propTypes = {
+  noteId: PropTypes.string.isRequired,
+  onDeleteNote: PropTypes.func.isRequired
+};

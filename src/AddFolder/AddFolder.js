@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Header from '../Header/Header';
 import NotefulContext from '../NotefulContext';
 import config from '../config';
@@ -12,7 +13,7 @@ export default class AddFolder extends Component {
     e.preventDefault()
     const { name } = e.target
     const folder = {
-      id: Date.now(),
+      id: Date.now().toString(),
       name: name.value
     }
     fetch(`${config.API_ENDPOINT}/folders`, {
@@ -50,4 +51,8 @@ export default class AddFolder extends Component {
       </>
     );
   }
+}
+
+AddFolder.propTypes = {
+  onCancel: PropTypes.func.isRequired
 }

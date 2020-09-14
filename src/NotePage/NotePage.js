@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Header from '../Header/Header';
 import NoteSidebar from '../NoteSidebar/NoteSidebar';
 import NoteMain from '../NoteMain/NoteMain';
@@ -8,8 +9,6 @@ export default function NotePage(props) {
   return (
     <NotefulContext.Consumer>
       {value => {
-        console.log(value.notes)
-        console.log(props.noteId)
         const parentFolderId = value.notes.find(note => note.id === props.noteId).folderId;
         const folder = value.folders.find(folder => folder.id === parentFolderId);
         return (
@@ -31,3 +30,9 @@ export default function NotePage(props) {
     </NotefulContext.Consumer>
   );
 }
+
+NotePage.propTypes = {
+  noteId: PropTypes.string.isRequired,
+  onGoBack: PropTypes.func.isRequired,
+  onDeleteNote: PropTypes.func.isRequired
+};

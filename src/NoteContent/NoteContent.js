@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function NoteContent(props) {
   return (
@@ -6,4 +7,8 @@ export default function NoteContent(props) {
       <p>{props.content}</p>
     </div>
   );
+}
+
+NoteContent.propTypes = {
+  content: PropTypes.string.isRequired
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
 import Main from '../Main/Main';
@@ -15,3 +16,7 @@ export default function FolderPage(props) {
     </>
   );
 }
+
+FolderPage.propTypes = {
+  selectedFolderId: PropTypes.string.isRequired
+};

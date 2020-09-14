@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './NoteSidebar.css'
 
 export default function NoteSidebar(props) {
@@ -10,4 +11,9 @@ export default function NoteSidebar(props) {
       <p>{props.folder.name}</p>
     </nav>
   )
+}
+
+NoteSidebar.propTypes = {
+  folder: PropTypes.object.isRequired,
+  onGoBack: PropTypes.func.isRequired
 }

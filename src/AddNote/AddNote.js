@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Header from '../Header/Header';
 import NotefulContext from '../NotefulContext';
 import config from '../config';
@@ -9,16 +10,17 @@ export default class AddNote extends Component {
   static contextType = NotefulContext;
 
   handleSubmit = e => {
-    e.preventDefault()
+    e.preventDefault();
     const { name, content, folderId } = e.target;
-    const modified = Date.now()
+    const modified = (new Date()).toISOString();
+    const id = Date.now().toString();
     const note = {
-      id: Date.now(),
+      id: id,
       name: name.value,
       content: content.value,
       folderId: folderId.value,
       modified: modified
-    }
+    };
     fetch(`${config.API_ENDPOINT}/notes`, {
       method: 'POST',
       body: JSON.stringify(note),
@@ -39,30 +41,38 @@ export default class AddNote extends Component {
         content.value = '';
         folderId.value = '';
         this.context.addNote(note);
-        this.props.history.push(`/`);
-      })
-  }
-  
+      });
+  };
+
   render() {
     return (
       <>
         <Header />
         <form id='add-note' onSubmit={this.handleSubmit}>
-          
-          <label htmlFor='name'>Note title:</label>
-          <input name='name' type='text' id='name'/>
-          
-          <label htmlFor='content'>Note title:</label>
-          <textarea name='content' id='content'/>
 
-          <label htmlFor='folder'>Select a folder:</label>
-          <select name='folder' id='folderId'>
-            {this.context.folders.map(folder => {
-              return (
-              <option key={folder.id} value={folder.id}>{folder.name}</option>
-              )
-            })}
-          </select>
+          <div className='AddNote__name'>
+            <label htmlFor='name'>Note title:</label>
+            <br/>
+            <input name='name' type='text' id='name' />
+          </div>
+
+          <div className='AddNote__note'>
+            <label htmlFor='content'>Note:</label>
+            <br/>
+            <textarea name='content' id='content' />
+          </div>
+
+          <div className='AddNote__folder'>
+            <label htmlFor='folder'>Select a folder:</label>
+            <br/>
+            <select name='folder' id='folderId'>
+              {this.context.folders.map(folder => {
+                return (
+                  <option key={folder.id} value={folder.id}>{folder.name}</option>
+                );
+              })}
+            </select>
+          </div>
 
           <button type='submit'>Submit</button>
           <button onClick={this.props.onCancel}>Cancel</button>
@@ -71,3 +81,7 @@ export default class AddNote extends Component {
     );
   }
 }
+
+AddNote.propTypes = {
+  onCancel: PropTypes.func.isRequired
+};
