@@ -10,7 +10,6 @@ export default class Note extends Component {
 
   deleteNoteRequest = () => {
     const noteId = this.props.id;
-    console.log('deleting note', noteId);
     fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
       method: 'DELETE',
       headers: {

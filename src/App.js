@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, withRouter } from 'react-router-dom';
 import MainPage from './MainPage/MainPage';
 import NotePage from './NotePage/NotePage';
+import NotePageError from './NotePageError';
 import FolderPage from './FolderPage/FolderPage';
 import NotefulContext from './NotefulContext';
 import AddFolder from './AddFolder/AddFolder';
@@ -25,9 +26,9 @@ class App extends Component {
     this.setState({
       notes: [...this.state.notes, note],
     }, () => {
-      this.props.history.push(`/note/${note.id}`)
+      this.props.history.push(`/note/${note.id}`);
     });
-  }
+  };
 
   deleteNote = noteId => {
     const newNotes = this.state.notes.filter(note => note.id !== noteId);
@@ -93,16 +94,23 @@ class App extends Component {
           )}
         />
 
+
         <Route
           exact
           path='/note/:noteId'
           render={props => (
-            <NotePage
+            <NotePageError
               noteId={props.match.params.noteId}
-              onGoBack={() => props.history.push('/')}
-              onDeleteNote={() => props.history.push('/')}
-            />)}
+              {...props}>
+              <NotePage
+                noteId={props.match.params.noteId}
+                { ...props }
+                onGoBack={() => props.history.push('/')}
+                onDeleteNote={() => props.history.push('/')}
+              />
+            </NotePageError>)}
         />
+
         <Route
           path='/folder/:folderId'
           render={props =>
