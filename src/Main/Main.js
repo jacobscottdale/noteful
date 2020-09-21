@@ -9,7 +9,7 @@ export default function Main(props) {
     <section className='Main'>
       <NoteList selectedFolderId={props.selectedFolderId} />
       <Link to='/add-new-note'>
-        Add Note
+        <button>Add Note</button>
       </Link>
     </section>
   );

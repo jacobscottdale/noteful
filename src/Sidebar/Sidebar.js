@@ -7,7 +7,9 @@ export default function Sidebar() {
   return (
     <nav className='Sidebar'>
       <FolderList />
-      <Link to='/add-new-folder'>Add New Folder</Link>
+      <Link to='/add-new-folder'>
+        <button>Add New Folder</button>
+      </Link>
     </nav>
   );
 }

@@ -90,6 +90,9 @@ export default class AddNote extends Component {
         content.value = '';
         folderId.value = '';
         this.context.addNote(note);
+      })
+      .catch(err => {
+        console.log(err);
       });
   };
 

@@ -62,6 +62,9 @@ export default class AddFolder extends Component {
       .then(data => {
         this.context.addFolder(folder);
         this.props.history.push('/');
+      })
+      .catch(err => {
+        console.log(err)
       });
   };
 
@@ -80,6 +83,7 @@ export default class AddFolder extends Component {
             disabled={this.validateFolderName()}
           >Submit</button>
           <button onClick={this.props.onCancel}>Cancel</button>
+
         </form>
       </>
     );
