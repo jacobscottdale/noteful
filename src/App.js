@@ -102,12 +102,15 @@ class App extends Component {
             <NotePageError
               noteId={props.match.params.noteId}
               {...props}>
-              <NotePage
-                noteId={props.match.params.noteId}
-                { ...props }
-                onGoBack={() => props.history.push('/')}
-                onDeleteNote={() => props.history.push('/')}
-              />
+              {/* Conditional rendering to avoid an error when refreshing the NotePage route */
+                this.state.notes[0]
+                  ? <NotePage
+                    noteId={props.match.params.noteId}
+                    {...props}
+                    onGoBack={() => props.history.push('/')}
+                    onDeleteNote={() => props.history.push('/')}
+                  />
+                  : null}
             </NotePageError>)}
         />
 
