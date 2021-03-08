@@ -28,6 +28,6 @@ export default class NoteMain extends React.Component {
 }
 
 NoteMain.propTypes = {
-  noteId: PropTypes.string.isRequired,
+  noteId: PropTypes.number.isRequired,
   onDeleteNote: PropTypes.func.isRequired
 };

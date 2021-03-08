@@ -11,7 +11,7 @@ export default function FolderList() {
           return <Folder
             name={folder.name}
             id={folder.id}
-            key={folder.id} />;
+            key={folder.id + folder.name} />;
         });
         return (
           <ul className='FolderList'>

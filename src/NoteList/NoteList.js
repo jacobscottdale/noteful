@@ -30,5 +30,5 @@ export default function NoteList(props) {
 }
 
 NoteList.propTypes = {
-  selectedFolderId: PropTypes.string
+  selectedFolderId: PropTypes.number
 }

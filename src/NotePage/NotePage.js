@@ -11,6 +11,7 @@ export default class NotePage extends React.Component {
   render() {
     // Upon refresh, context resets to default values. 
     // Workaround: NotePageError redirects to '/' route
+    console.log('hello')
     const parentFolderId = this.context.notes.find(note => note.id === this.props.noteId).folderId;
     const folder = this.context.folders.find(folder => folder.id === parentFolderId);
 
@@ -33,7 +34,7 @@ export default class NotePage extends React.Component {
 }
 
 NotePage.propTypes = {
-  noteId: PropTypes.string.isRequired,
+  noteId: PropTypes.number.isRequired,
   onGoBack: PropTypes.func.isRequired,
   onDeleteNote: PropTypes.func.isRequired
 };

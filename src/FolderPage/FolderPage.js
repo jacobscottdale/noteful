@@ -18,5 +18,5 @@ export default function FolderPage(props) {
 }
 
 FolderPage.propTypes = {
-  selectedFolderId: PropTypes.string.isRequired
+  selectedFolderId: PropTypes.number.isRequired
 };

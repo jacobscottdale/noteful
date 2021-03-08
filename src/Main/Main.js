@@ -16,5 +16,5 @@ export default function Main(props) {
 }
 
 Main.propTypes = {
-  selectedFolderId: PropTypes.string
+  selectedFolderId: PropTypes.number
 };

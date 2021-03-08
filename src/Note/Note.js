@@ -22,7 +22,6 @@ export default class Note extends Component {
             throw error;
           });
         }
-        return response.json();
       })
       .then(() => {
         this.props.onDeleteNote();
@@ -56,7 +55,7 @@ export default class Note extends Component {
 Note.propTypes = {
   name: PropTypes.string.isRequired,
   modified: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired
+  id: PropTypes.number.isRequired
 };
 
 Note.defaultProps = {

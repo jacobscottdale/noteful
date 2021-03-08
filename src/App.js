@@ -25,9 +25,7 @@ class App extends Component {
   addNote = note => {
     this.setState({
       notes: [...this.state.notes, note],
-    }, () => {
-      this.props.history.push(`/note/${note.id}`);
-    });
+    })
   };
 
   deleteNote = noteId => {
@@ -105,7 +103,7 @@ class App extends Component {
               {/* Conditional rendering to avoid an error when refreshing the NotePage route */
                 this.state.notes[0]
                   ? <NotePage
-                    noteId={props.match.params.noteId}
+                    noteId={props.match.params.noteId*1}
                     {...props}
                     onGoBack={() => props.history.push('/')}
                     onDeleteNote={() => props.history.push('/')}
@@ -118,7 +116,7 @@ class App extends Component {
           path='/folder/:folderId'
           render={props =>
             <FolderPage
-              selectedFolderId={props.match.params.folderId} />}
+              selectedFolderId={props.match.params.folderId*1} />}
         />
         <Route
           exact path='/'

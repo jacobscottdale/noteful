@@ -61,18 +61,14 @@ export default class AddNote extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { name, content, folderId } = e.target;
-    const modified = (new Date()).toISOString();
-    const id = Date.now().toString();
-    const note = {
-      id: id,
+    const newNote = {
       name: name.value,
-      modified: modified,
       folderId: folderId.value,
       content: content.value
     };
     fetch(`${config.API_ENDPOINT}/notes`, {
       method: 'POST',
-      body: JSON.stringify(note),
+      body: JSON.stringify(newNote),
       headers: {
         'content-type': 'application/json'
       }
@@ -85,11 +81,12 @@ export default class AddNote extends Component {
         }
         return response.json();
       })
-      .then(data => {
+      .then(note => {
         name.value = '';
         content.value = '';
         folderId.value = '';
         this.context.addNote(note);
+        this.props.history.push(`/folder/${note.folderId}`)
       })
       .catch(err => {
         console.log(err);
