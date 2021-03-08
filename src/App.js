@@ -37,8 +37,8 @@ class App extends Component {
 
   componentDidMount() {
     Promise.all([
-      fetch(`${config.API_ENDPOINT}/notes`),
-      fetch(`${config.API_ENDPOINT}/folders`)
+      fetch(`${config.REACT_APP_API_ENDPOINT}/notes`),
+      fetch(`${config.REACT_APP_API_ENDPOINT}/folders`)
     ])
       .then(([notesResponse, foldersResponse]) => {
         isResponseOk(notesResponse);

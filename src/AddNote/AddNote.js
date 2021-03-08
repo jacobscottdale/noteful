@@ -66,7 +66,7 @@ export default class AddNote extends Component {
       folderId: folderId.value,
       content: content.value
     };
-    fetch(`${config.API_ENDPOINT}/notes`, {
+    fetch(`${config.REACT_APP_API_ENDPOINT}/notes`, {
       method: 'POST',
       body: JSON.stringify(newNote),
       headers: {
